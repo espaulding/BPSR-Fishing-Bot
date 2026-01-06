@@ -13,10 +13,13 @@ class CheckingRodState(BotState):
 
         found_rod = 0
 
-        if self.detector.find(screen, "reg_rod", 5, debug=True):
+        if self.detector.find(screen, "flex_rod", 5, debug=True):
             found_rod = 1
 
-        if found_rod == 0 and self.detector.find(screen, "sturdy_rod", 5, debug=True):
+        if found_rod == 0 and self.detector.find(screen, "sturdy_rod", 5, debug=self.bot.debug_mode):
+            found_rod = 1
+
+        if found_rod == 0 and self.detector.find(screen, "reg_rod", 5, debug=self.bot.debug_mode):
             found_rod = 1
                
         if found_rod == 0:
